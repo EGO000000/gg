@@ -1,0 +1,263 @@
+/*!**/
+/*Web Technologies course*/
+/*CSS for examples of the "My Favourite Trees" blog with JavaScript*/
+
+/*Stefan Korecko, 2020*/
+/*DCI FEEI TU Kosice*/
+/**!*/
+
+/*!*Basic formatting for the whole page*!*/
+/*button{*/
+/*    background-color: #46176e;*/
+/*}*/
+html {
+    font-size: 100%;
+    font-family: "Tw Cen MT", Arial, Helvetica, sans-serif;
+    font-style: normal; /*normal, italic, oblique (obl.-similar to italic*/
+    font-weight: normal; /*normal, bold*/
+    text-align: justify; /*justify, left, right, center*/
+    color: #ff2ead;
+    background-color: black;
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: #B70021;
+}
+
+a:hover{
+    text-decoration: underline;
+    color: #982d3b;
+}
+
+body > * {
+    margin: 0.5rem;
+}
+
+body > header{
+    border-radius: 1rem;
+    padding:0.5rem;
+    text-align:center;
+    background-color: #46176e;
+}
+
+
+body > footer{
+    font-size: 0.8rem;
+}
+
+main footer{
+    margin-top: 0.5em;
+}
+
+main > article{
+    background-color: #6f00cc;
+    border-radius: 1rem;
+    padding: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+main > article > *{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+main > article > h2{
+    background-color: #a840ff;
+    border-radius: 1rem;
+    margin: 0;
+}
+
+body > aside{
+    background-color: rgb(253, 255, 162);
+    border-radius: 1rem;
+    color: grey;
+    font-size: 0.9em;
+    height: 8em;
+    padding: 0.5em;
+}
+
+/*!***********************************************************************************************************!*/
+/*!*FLEXBOX LAYOUT and media queries for the whole page*!*/
+body{
+    display: flex;
+    flex-direction: column;
+}
+li{
+    flex-grow: 1; /*aby zabrali celu sirku (to use the whole width)*/
+}
+body > footer{
+    order: 1; /*aby bol posledny. Ostatne maju implicitne hodnotu 0, tzn. sa zobrazia podla poradia v html (To be the last one displayed as the others have implicitly order=0)*/
+}
+
+.decor {
+    /*top: -30vh;*/
+    position: relative;
+    max-width: 64vw;
+    margin: 0 10vw;
+    background: white;
+    border-radius: 30px;
+}
+.form-left-decoration, .form-right-decoration {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background: #f69a73;
+    border-radius: 20px;
+}
+.form-left-decoration {
+    bottom: 60px;
+    left: -30px;
+}
+.form-right-decoration {
+    top: 60px;
+    right: -30px;
+}
+.form-left-decoration:before, .form-left-decoration:after, .form-right-decoration:before, .form-right-decoration:after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    border-radius: 30px;
+    background: white;
+}
+.form-left-decoration:before {
+    top: -20px;
+}
+.form-left-decoration:after {
+    top: 20px;
+    left: 10px;
+}
+.form-right-decoration:before {
+    top: -20px;
+    right: 0;
+}
+.form-right-decoration:after {
+    top: 20px;
+    right: 10px;
+}
+.form-inner {
+    padding: 50px;
+}
+.form-inner input, .form-inner textarea {
+    display: block;
+    width: 90%;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    background: #E9EFF6;
+    line-height: 40px;
+    border-width: 0;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+.form-inner input[type="submit"],.form-inner input[type="reset"] {
+    margin-top: 30px;
+    background: #f69a73;
+    border-bottom: 4px solid #d87d56;
+    color: white;
+    font-size: 14px;
+}
+.form-inner textarea {
+    resize: none;
+}
+.form-inner h3 {
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #707981;
+}
+input:invalid{
+    border-color: red;
+}
+label{
+    color: #000;
+}
+input textarea{
+    color: black;
+}
+.com{
+    color: #000;
+    background-color: white;
+}
+
+
+@media only screen and (min-width: 600px){
+    body{
+        min-width: 35rem;
+        max-width: 60rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+@media only screen and (max-width: 599px){
+    body{
+        width: 100%;
+    }
+}
+
+
+
+
+/*!***********************************************************************************************************!*/
+/*!*Properties related to the dropdown menu*!*/
+
+.menu {
+    text-align: left;
+    padding-left: 0.5em;
+}
+
+#menuIts{
+    position:absolute;
+    padding: 0.5em;
+    max-width: 8em;
+    min-width: 7em;
+    border-radius: 0.5rem;
+    background-color: #46176e;
+}
+
+#menuIts > a {
+    display: block;
+}
+
+#menuTitle{
+    border: 0;
+    background-color: #46176e;
+    outline:none;
+}
+
+#menuTitle:hover, #menuIts > a:hover{
+    text-decoration: none;
+    color: #982d3b;
+    background-color: rgb(255,246,214);
+}
+
+.mnHide {display:none;}
+
+.mnShow {display:block;}
+
+
+
+/*!***********************************************************************************************************!*/
+/*!*Properties related to the form and rendered opinions*!*/
+
+label{
+    vertical-align: top;
+    display: inline-block; /*instead of inline (default) to make the width applicable*/
+    min-width: 5.5em;
+}
+
+form{
+    padding-bottom: 1em;
+}
+
+h3 > i {
+    font-size: 0.8em;
+}
+
+
+
+
