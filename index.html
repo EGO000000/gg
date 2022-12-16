@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Stefan Korecko">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet"
+          href="css/treesBlog.css"
+          media="screen">
+
+
+    <title>GameSpace</title>
+</head>
+
+<body>
+<header>
+    <h1>GameSpace</h1>
+
+
+<div class="menu">
+    <button id="menuTitle">Menu</button>
+
+    <nav id="menuIts" class="menu mnHide">
+            <a href="#welcome">Welcome!</a>
+            <a href="#articles/1">Articles</a>
+            <a href="#opinions">Visitor opinions</a>
+            <a href="#addOpinion">Add your opinion</a>
+<!--            <a href="article1.html">AWT</a>-->
+<!--            <a href="article2.html">Tesla</a>-->
+<!--            <a href="article3.html">Lamborgini</a>-->
+    </nav>
+
+</div>
+
+</header>
+
+<main id="router-view">
+</main>
+
+<footer>
+    Yehor Nepokrytyi <br>
+    (c) 2022-23
+</footer>
+
+
+<!--Templates for html, dynamically inserted by the router -->
+
+<script id="template-welcome" type="text/template">
+    <article>
+        <h2>GameSpace</h2>
+        <p>
+            This site will be about new game titles that coming soon.
+        </p>
+    </article>
+</script>
+
+<script id="template-articles" type="text/template">
+    {{#articles}}
+    <article>
+        <h2><a href="{{detailLink}}">{{title}}</a></h2>
+        <p>
+            by {{author}}
+        </p>
+    </article>
+    {{/articles}}
+
+        <p>
+            Displaying page {{currPage}} of {{pageCount}} pages.
+        </p>
+        <nav>
+            {{#prevPage}}
+            <a href="#articles/{{prevPage}}/{{pageCount}}"><< Previous page</a>
+            {{/prevPage}}
+            {{#nextPage}}
+            <a href="#articles/{{nextPage}}/{{pageCount}}">Next page >></a>
+            {{/nextPage}}
+        </nav>
+    <footer><a href="#menuTitle" class="linkAsButton">Up to the menu</a></footer>
+</script>
+
+<script id="template-articles-error" type="text/template">
+
+    <article>
+        <h2>Articles acquisition failed</h2>
+        <p>
+            {{errMessage}}
+        </p>
+    </article>
+    <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
+
+</script>
+
+<script id="template-opinions" type="text/template">
+    <article  id="artOpinions">
+        <h2>Visitor Opinions</h2>
+        {{#.}}
+        <section>
+            <h3>{{name}} <i>{{created}}</i></h3>
+            <p>{{comment}}</p>
+            <p>{{grade}}</p>
+        </section>
+        {{/.}}
+        {{^.}}
+        <section>
+            Sorry, no opinions found.
+        </section>
+        {{/.}}
+        <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
+    </article>
+</script>
+
+<script id="template-addOpinion" type="text/template">
+    <article  id="artOpnFrm">
+        <h2>Your Opinion</h2>
+        <p>
+            Please, use the form below to state your opinion about this page.
+        </p>
+
+        <form class="decor" id="formM">
+            <div class="form-left-decoration"></div>
+            <div class="form-right-decoration"></div>
+            <div class="form-inner">
+                <h3>Reviews</h3>
+                <input type="text" placeholder="Username" id = "User" pattern="[A-Za-z].{2,}" title="Min. 2 leters and leters only" required>
+                <input type="email" placeholder="Email" id = "EmailUser" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="An element with type=[email] that must be in the following order: characters@characters.domain (characters followed by an @ sign, followed by more characters, and then a [.])" required>
+                <input type="url" id = "UserUrl" placeholder="URL of image">
+                <h3>Sex:</h3>
+                <input type="radio" id="sex1" style="width: auto; display: inline;" class="custom-control-input-male" name = "fig">
+                <label class="custom-control-label" for="sex1">Male</label>
+                <input type="radio" id="sex2" class="custom-control-input-female" style="width: auto; display: inline;" name = "fig">
+                <label class="custom-control-label" for="sex2">Female</label>
+                <h3>What sites do you like?</h3>
+                <input type="checkbox" class="custom-control-input" style="width: auto; display: inline;" id="site1">
+                <label class="custom-control-label" for = "site1">God of war</label>
+                <br>
+                <input type="checkbox" class="custom-control-input" style="width: auto; display: inline;" id="site2">
+                <label class="custom-control-label" for = "site2">Cyberpunk</label>
+                <br>
+                <input type="checkbox" class="custom-control-input" style="width: auto; display: inline;" id="site3">
+                <label class="custom-control-label" for = "site3">The last of us</label>
+                <textarea id="opn" title="Min. 2 leters and leters only" placeholder="Text of comment..." rows="3" required></textarea>
+                <label for="grad">How would you rate our site?</label>
+                <input id = "grad" name="grade" list="grades" pattern="[A-Za-z].{1,}" title="Min. 2 leters and leters only">
+                <datalist id="grades">
+                    <option value="Unbelievable">
+                    <option value="Good">
+                    <option value="Nice">
+                    <option value="Can be better">
+                    <option value="Make it brand new next time">
+                </datalist>
+                <input type="submit" value="Send" id="comment-add">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+        <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
+    </article>
+</script>
+
+<!--JavaScript code, inserted as a module-->
+<script  type="module" src="js/index.js"></script>
+
+
+
+
+</body>
+</html>
